@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NasaAPIToExcel.Services.Contracts;
 using NasaAPIToExcel.Web.Models;
+using System.Diagnostics;
 
 namespace NasaAPIToExcel.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IAsteroidsService asteroidService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IAsteroidsService asteroidService)
         {
             _logger = logger;
+            this.asteroidService = asteroidService;
         }
 
         public IActionResult Index()
