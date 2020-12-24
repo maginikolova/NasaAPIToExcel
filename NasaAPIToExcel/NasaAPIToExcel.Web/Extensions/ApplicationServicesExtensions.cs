@@ -8,7 +8,7 @@ namespace NasaAPIToExcel.Web.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IAsteroidsService, AsteroidsService>();
+            services.AddScoped<INASAService, NASAService>();
 
             return services;
         }
