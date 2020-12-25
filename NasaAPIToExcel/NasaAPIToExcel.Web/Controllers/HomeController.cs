@@ -21,7 +21,7 @@ namespace NasaAPIToExcel.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //var APODData = await this.asteroidService.GetAPODDataAsync(DateTime.Now);
+            var APODData = await this.asteroidService.GetAPODDataAsync(DateTime.Now);
             var asteroidsData = await this.asteroidService.GetAsteroidsFeedDataAsync(DateTime.Now);
 
             return View();

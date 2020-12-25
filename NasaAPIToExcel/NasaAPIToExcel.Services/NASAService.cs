@@ -24,7 +24,17 @@ namespace NasaAPIToExcel.Services
 
         public async Task<AstronomyPictureOfTheDay> GetAPODDataAsync(DateTime dateTime)
         {
-            throw new NotImplementedException();
+            var client = new HttpClient();
+
+            var date = dateTime.ToString("yyyy-MM-dd");
+
+            using (var response = await client.GetAsync(string.Format(NasaAPODUrl, date, apiKey)))
+            {
+                var responseAsString = await response.Content.ReadAsStringAsync();
+
+                // TODO: FIX JSON/Feet bug
+                return JsonConvert.DeserializeObject<AstronomyPictureOfTheDay>(responseAsString);
+            }
         }
 
         public async Task<AsteroidsApiData> GetAsteroidsFeedDataAsync(DateTime dateTime)
@@ -37,6 +47,7 @@ namespace NasaAPIToExcel.Services
             {
                 var responseAsString = await response.Content.ReadAsStringAsync();
 
+                // TODO: FIX JSON/Feet bug
                 return JsonConvert.DeserializeObject<AsteroidsApiData>(responseAsString);
             }
         }
